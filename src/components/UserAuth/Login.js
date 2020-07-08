@@ -47,24 +47,23 @@ const Login = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      // const token = sessionStorage.getItem("token");
-      const conn = new Connection();
-      const response = await conn.create(
-        "http://localhost:5000/api/auth/signin",
-        {
-          username,
-          password,
+      AuthService.login(username, password).then(
+        () => {
+          props.history.push("/profile");
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
         }
       );
-      console.log(response);
-      if (response.status.code === 200) {
-        AuthService.login(username, password);
-        props.history.push("/profile");
-        dispatch({ type: "SET_USERNAME", username: response.data.username });
-      }
-
-      setLoading(false);
-      // setMessage(resMessage);
     } else {
       setLoading(false);
     }

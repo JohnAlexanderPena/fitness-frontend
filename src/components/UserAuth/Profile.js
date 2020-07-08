@@ -1,14 +1,19 @@
 import React from "react";
 import AuthService from "../../services/auth.service";
+import profileHolder from "../../assets/avatar.webp";
 
 const Profile = () => {
-  const currentUser = AuthService.getCurrentUser();
-
+  const currentUser = AuthService?.getCurrentUser();
   return (
     <div className="container">
       <header className="jumbotron">
         <h3>
-          <strong>{currentUser.username}</strong> Profile
+          <strong>{currentUser.username}</strong>
+          <img
+            className="profile-placeholder"
+            src={profileHolder}
+            alt="placeholder"
+          />
         </h3>
       </header>
       <p>
