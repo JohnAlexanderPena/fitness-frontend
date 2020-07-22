@@ -3,7 +3,6 @@ export const setUser = (state = {}, action) => {
   const { username, type } = action;
   return {
     ...state,
-    type,
     user: username,
   };
 };

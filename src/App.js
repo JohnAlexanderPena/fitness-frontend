@@ -11,18 +11,21 @@ import Profile from "./components/UserAuth/Profile";
 import BoardUser from "./components/Header/BoardUser";
 import BoardModerator from "./components/Header/BoardModerator";
 import BoardAdmin from "./components/Header/BoardAdmin";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
       setCurrentUser(user);
+      dispatch({ type: "SET_USERNAME", username: user });
       setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }

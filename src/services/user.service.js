@@ -7,8 +7,10 @@ const getPublicContent = () => {
   return axios.get(API_URL + "all");
 };
 
-const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
+const getUserBoard = async (id) => {
+  return axios.get(API_URL + `/user/find/post/5f03ca21f624d73e91fb5303`, {
+    headers: authHeader(),
+  });
 };
 
 const getModeratorBoard = () => {

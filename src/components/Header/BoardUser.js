@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 
 import UserService from "../../services/user.service";
+import { useSelector } from "react-redux";
 
 const BoardUser = () => {
   const [content, setContent] = useState("");
 
+  const id = useSelector((state) => state.users.user.id);
+
+  console.log(id);
   useEffect(() => {
-    UserService.getUserBoard().then(
+    UserService.getUserBoard(id).then(
       (response) => {
         setContent(response.data);
       },
@@ -22,7 +26,7 @@ const BoardUser = () => {
         setContent(_content);
       }
     );
-  }, []);
+  }, [id]);
 
   return (
     <Container>
