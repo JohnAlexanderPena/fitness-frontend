@@ -104,7 +104,11 @@ const Login = (props) => {
           </div>
 
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button
+              disabled={loading}
+              type="submit"
+              className="btn btn-primary btn-block"
+            >
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
@@ -120,6 +124,9 @@ const Login = (props) => {
             </div>
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          <p className="forgot-password text-right">
+            Forgot <a href="#">password?</a>
+          </p>
         </Form>
       </div>
     </div>

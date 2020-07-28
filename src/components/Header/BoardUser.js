@@ -9,30 +9,29 @@ const BoardUser = () => {
 
   const id = useSelector((state) => state.users.user.id);
 
-  console.log(id);
   useEffect(() => {
-    UserService.getUserBoard(id).then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    id &&
+      UserService.getUserBoard(id).then(
+        (response) => {
+          console.log(response);
+          setContent(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
 
-        setContent(_content);
-      }
-    );
+          setContent(_content);
+        }
+      );
   }, [id]);
 
   return (
     <Container>
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+      <header className="jumbotron">{/* <h3>{content}</h3> */}</header>
     </Container>
   );
 };

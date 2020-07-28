@@ -7,10 +7,17 @@ const getPublicContent = () => {
   return axios.get(API_URL + "all");
 };
 
+// const getUserBoard = async (id) => {
+//   return axios.get(API_URL + `/user/find/post/${id}`, {
+//     headers: authHeader(),
+//   });
+// };
+
 const getUserBoard = async (id) => {
-  return axios.get(API_URL + `/user/find/post/5f03ca21f624d73e91fb5303`, {
-    headers: authHeader(),
-  });
+  console.log(process.env);
+  return axios.get(
+    `http://newsapi.org/v2/everything?q=health&from=2020-06-28&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API}`
+  );
 };
 
 const getModeratorBoard = () => {
