@@ -1,5 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import moment from "moment";
 
 const API_URL = "http://localhost:5000/api/test/";
 
@@ -15,8 +16,13 @@ const getPublicContent = () => {
 
 const getUserBoard = async (id) => {
   console.log(process.env);
+
   return axios.get(
-    `http://newsapi.org/v2/everything?q=health&from=2020-06-28&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API}`
+    `http://newsapi.org/v2/everything?q=health&from=${moment()
+      .subtract(15, "days")
+      .format("YYYY-MM-DD")}&sortBy=publishedAt&apiKey=${
+      process.env.REACT_APP_NEWS_API
+    }`
   );
 };
 
