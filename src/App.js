@@ -29,7 +29,7 @@ const App = () => {
       setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
-  }, []);
+  }, [dispatch]);
 
   const logOut = () => {
     AuthService.logout();

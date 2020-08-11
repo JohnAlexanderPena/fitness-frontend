@@ -5,7 +5,7 @@ import moment from "moment";
 const API_URL = "http://localhost:5000/api/test/";
 
 const getPublicContent = () => {
-  return axios.get(API_URL + "all");
+  return axios.get(API_URL + "congress");
 };
 
 // const getUserBoard = async (id) => {
