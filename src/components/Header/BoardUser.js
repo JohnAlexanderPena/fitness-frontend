@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import { navigate } from "hookrouter";
 
 import UserService from "../../services/user.service";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Contents from "../UserContent/Contents";
 
 const BoardUser = () => {
   const [content, setContent] = useState("");
+
+  const dispatch = useDispatch();
 
   const id = useSelector((state) => state.users.user.id);
 
@@ -13,8 +17,8 @@ const BoardUser = () => {
     id &&
       UserService.getUserBoard(id).then(
         (response) => {
-          console.log(response);
           setContent(response.data);
+          dispatch({ type: "SET_CONTENT", articles: response.data.articles });
         },
         (error) => {
           const _content =
@@ -27,11 +31,11 @@ const BoardUser = () => {
           setContent(_content);
         }
       );
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <Container>
-      <header className="jumbotron">{/* <h3>{content}</h3> */}</header>
+      <header className="jumbotron">USER CONTENT HERE</header>
     </Container>
   );
 };

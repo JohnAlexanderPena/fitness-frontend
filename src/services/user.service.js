@@ -4,7 +4,8 @@ import moment from "moment";
 
 const API_URL = "http://localhost:5000/api/test/";
 
-const getPublicContent = () => {
+const getUserBoard = () => {
+  console.log("Getting Content");
   return axios.get(API_URL + "congress");
 };
 
@@ -14,16 +15,20 @@ const getPublicContent = () => {
 //   });
 // };
 
-const getUserBoard = async (id) => {
+const getPublicContent = async (id) => {
   console.log(process.env);
 
   return axios.get(
-    `http://newsapi.org/v2/everything?q=health&from=${moment()
-      .subtract(15, "days")
-      .format("YYYY-MM-DD")}&sortBy=publishedAt&apiKey=${
-      process.env.REACT_APP_NEWS_API
-    }`
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_NEWS_API}`
   );
+
+  // return axios.get(
+  //   `http://newsapi.org/v2/everything?q=congress&from=${moment()
+  //     .subtract(15, "days")
+  //     .format("YYYY-MM-DD")}&sortBy=publishedAt&apiKey=${
+  //     process.env.REACT_APP_NEWS_API
+  //   }`
+  // );
 };
 
 const getModeratorBoard = () => {

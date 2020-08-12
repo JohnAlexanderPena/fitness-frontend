@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 import UserService from "../../services/user.service";
+import Contents from "../UserContent/Contents";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [content, setContent] = useState("");
 
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
+        console.log(response);
+        dispatch({ type: "SET_CONTENT", articles: response.data.articles });
+
         setContent(response.data);
       },
       (error) => {
@@ -24,7 +30,7 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <Contents />
       </header>
     </div>
   );
